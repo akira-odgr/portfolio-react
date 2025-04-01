@@ -5,12 +5,18 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  gsap:
+    specifier: ^3.12.7
+    version: 3.12.7
   react:
     specifier: ^19.0.0
     version: 19.1.0
   react-dom:
     specifier: ^19.0.0
     version: 19.1.0(react@19.1.0)
+  react-icons:
+    specifier: ^5.5.0
+    version: 5.5.0(react@19.1.0)
 
 devDependencies:
   '@eslint/js':
@@ -1187,6 +1193,10 @@ packages:
     engines: {node: '>=18'}
     dev: true
 
+  /gsap@3.12.7:
+    resolution: {integrity: sha512-V4GsyVamhmKefvcAKaoy0h6si0xX7ogwBoBSs2CTJwt7luW0oZzC0LhdkyuKV8PJAXr7Yaj8pMjCKD4GJ+eEMg==}
+    dev: false
+
   /has-flag@4.0.0:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
     engines: {node: '>=8'}
@@ -1397,6 +1407,14 @@ packages:
     dependencies:
       react: 19.1.0
       scheduler: 0.26.0
+    dev: false
+
+  /react-icons@5.5.0(react@19.1.0):
+    resolution: {integrity: sha512-MEFcXdkP3dLo8uumGI5xN3lDFNsRtrjbOEKDLD7yv76v4wpnEq2Lt2qeHaQOr34I/wPN3s3+N08WkQ+CW37Xiw==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 19.1.0
     dev: false
 
   /react@19.1.0:

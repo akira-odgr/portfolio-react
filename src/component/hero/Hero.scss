@@ -1,0 +1,130 @@
+@use "../../styles/mixin" as *;
+@use "../../styles/globals/" as *;
+@use "../../App.scss" as *;
+
+:root {
+    --primary-color: #01bbbf;
+    --text-dark: #1d293d;
+    --text-light: #62748e;
+    --extra-light: #fafafa;
+    --white: #fff;
+    --header-font: "Dancing Script", cursive;
+}
+
+.hero {
+    @extend .section__container;
+    overflow: hidden;
+
+    &__container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        gap: 2rem;
+        padding-top: 2rem;
+
+        @include mq("md") {
+            display: block;
+        }
+    }
+
+    &__image {
+        grid-area: 1/2/2/3;
+
+        @include mq("md") {
+        }
+
+        img {
+            max-width: 600px;
+            margin-inline: auto;
+        }
+    }
+
+    &__content {
+        & :is(h1, .section__description) {
+            text-align: left;
+
+            @include mq("md") {
+                text-align: center;
+            }
+        }
+
+        img {
+            max-width: 150px;
+            margin-inline: auto;
+            transform: rotate(-10deg);
+        }
+
+        h1 {
+            font-size: fluid-text(38px, 60px);
+            font-weight: 800;
+            color: var(--text-dark);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        form {
+            margin-top: 2rem;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem 1rem;
+            flex-direction: row;
+            flex-wrap: wrap;
+            border-radius: 1rem;
+            box-shadow: 5px 5px 20px rgb(0 0 0 / 0.1);
+
+            @include mq("sm") {
+                flex-direction: column;
+            }
+
+            .input-group {
+                position: relative;
+                flex: 1;
+                display: grid;
+                gap: 0.5rem;
+
+                input {
+                    font-size: 1rem;
+                    line-height: 1;
+                    width: 100%;
+                    font-weight: 500;
+                    outline: none;
+                    border: 1px solid rgb(0 0 0);
+                    padding: 0.3em;
+                    border-radius: 0.5rem;
+
+                    &:focus {
+                        + span {
+                            font-size: 0.8em;
+                            inset: -0.55rem auto auto 0.5rem;
+                            background-color: var(--white);
+                        }
+                    }
+                }
+
+                span {
+                    position: absolute;
+                    inset: 0.25rem auto auto 0.5rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    transition: 0.3s;
+
+                    .icon {
+                        color: var(--primary-color);
+                    }
+                }
+            }
+
+            .btn {
+                @include btn(0.75rem 1.5rem, var(--text-dark));
+                font-size: 1.2rem;
+
+                &:hover {
+                    background-color: var(--primary-color);
+                }
+            }
+        }
+    }
+}
