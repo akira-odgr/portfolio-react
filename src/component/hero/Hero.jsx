@@ -8,64 +8,56 @@ import HeroContentImg from "../../assets/images/plane.png";
 import "./Hero.scss";
 
 export const Hero = () => {
-    const heroImageRef = useRef(null); // useRefを使用して参照を作成
+    const heroImageRef = useRef(null);
     const titleRef = useRef(null);
     const descRef = useRef(null);
     const formRef = useRef(null);
-    // const titleRef = useRef(null);
+    const contentImgRef = useRef(null);
+
+    console.log(contentImgRef);
 
     useEffect(() => {
         const tl = gsap.timeline();
-
         // モバイルサイズのチェック
         const isMobile = window.innerWidth <= 768;
 
-        gsap.set(titleRef.current, { opacity: 0, y: 50 });
-        gsap.set(descRef.current, { opacity: 0, y: 50 });
-        gsap.set(formRef.current, { opacity: 0, y: 50 });
-        gsap.set(heroImageRef.current, { opacity: 0 });
+        // 初期設定
+        gsap.set(
+            [
+                titleRef.current,
+                descRef.current,
+                formRef.current,
+                heroImageRef.current,
+                contentImgRef.current,
+            ],
+            { opacity: 0, y: 50 }
+        );
 
-        if (isMobile) {
-            tl.to(heroImageRef.current, {
-                opacity: 1,
-                duration: 3,
-            })
-                .to(titleRef.current, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                })
-                .to(descRef.current, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                })
-                .to(formRef.current, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                });
-        } else {
-            tl.to(titleRef.current, {
+        // アニメーションの順序を決定
+        const animationSequence = isMobile
+            ? [
+                  heroImageRef.current,
+                  contentImgRef.current,
+                  titleRef.current,
+                  descRef.current,
+                  formRef.current,
+              ]
+            : [
+                  titleRef.current,
+                  descRef.current,
+                  formRef.current,
+                  contentImgRef.current,
+                  heroImageRef.current,
+              ];
+
+        // アニメーションを追加
+        animationSequence.forEach((ref) => {
+            tl.to(ref, {
                 opacity: 1,
                 y: 0,
-                duration: 1,
-            })
-                .to(descRef.current, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                })
-                .to(formRef.current, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                })
-                .to(heroImageRef.current, {
-                    opacity: 1,
-                    duration: 2,
-                });
-        }
+                duration: 0.5,
+            });
+        });
     }, []);
 
     return (
@@ -75,7 +67,7 @@ export const Hero = () => {
                     <img src={HeroImg} alt="" />
                 </div>
                 <div className="hero__content">
-                    <img src={HeroContentImg} alt="" />
+                    <img src={HeroContentImg} ref={contentImgRef} alt="" />
                     <h1 ref={titleRef}>
                         Explore The World And Enjoy Your Trip
                     </h1>
